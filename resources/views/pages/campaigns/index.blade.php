@@ -1,114 +1,170 @@
 <div>
     <x-slot:header>
         <div>
-            <h1 class="text-2xl font-bold text-[var(--text-primary)] tracking-tight">Campaigns</h1>
-            <p class="text-sm text-[var(--text-tertiary)] mt-1">Manage your outreach campaigns</p>
+            <h1 class="text-3xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-[var(--text-primary)] to-[var(--text-secondary)] tracking-tight">Email Campaigns</h1>
+            <p class="text-sm text-[var(--text-tertiary)] mt-1 font-medium">Create, schedule and track your sophisticated outreach campaigns</p>
         </div>
-        <x-ui.button variant="primary" href="/campaigns/create">
-            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/></svg>
-            New Campaign
-        </x-ui.button>
+        <div class="flex items-center gap-3">
+            <x-ui.button variant="secondary" class="bg-[var(--surface-secondary)]/50 backdrop-blur-md border-[var(--border-subtle)] hover:bg-[var(--surface-tertiary)]">
+                <svg class="w-4 h-4 mr-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/></svg>
+                Refresh
+            </x-ui.button>
+            <x-ui.button class="bg-gradient-to-r from-primary-600 to-purple-600 hover:from-primary-500 hover:to-purple-500 text-white shadow-lg shadow-primary-500/25 border-none">
+                <svg class="w-4 h-4 mr-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/></svg>
+                New Campaign
+            </x-ui.button>
+        </div>
     </x-slot:header>
 
-    {{-- KPI Row --}}
-    <div class="grid grid-cols-2 lg:grid-cols-6 gap-4 mb-6 stagger-children">
-        <x-ui.kpi-card title="Total" value="24" color="primary"><x-slot:icon><svg class="w-5 h-5 text-primary-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"/></svg></x-slot:icon></x-ui.kpi-card>
-        <x-ui.kpi-card title="Active" value="8" color="success"><x-slot:icon><svg class="w-5 h-5 text-success-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg></x-slot:icon></x-ui.kpi-card>
-        <x-ui.kpi-card title="Open Rate" value="42.5" suffix="%" trend="up" trendValue="+4.2%" color="info"><x-slot:icon><svg class="w-5 h-5 text-info-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/></svg></x-slot:icon></x-ui.kpi-card>
-        <x-ui.kpi-card title="Click Rate" value="5.1" suffix="%" color="warning"><x-slot:icon><svg class="w-5 h-5 text-warning-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 15l-2 5L9 9l11 4-5 2zm0 0l5 5"/></svg></x-slot:icon></x-ui.kpi-card>
-        <x-ui.kpi-card title="Reply Rate" value="8.3" suffix="%" trend="up" trendValue="+1.7%" color="success"><x-slot:icon><svg class="w-5 h-5 text-success-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h10a8 8 0 018 8v2M3 10l6 6m-6-6l6-6"/></svg></x-slot:icon></x-ui.kpi-card>
-        <x-ui.kpi-card title="Recipients" value="12,450" color="primary"><x-slot:icon><svg class="w-5 h-5 text-primary-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z"/></svg></x-slot:icon></x-ui.kpi-card>
-    </div>
-
-    {{-- Tabs --}}
-    <div class="flex items-center gap-1 mb-6 border-b border-[var(--border-default)]">
-        @php $tabs = ['All' => true, 'Active' => false, 'Draft' => false, 'Paused' => false, 'Completed' => false]; @endphp
-        @foreach($tabs as $tab => $active)
-        <button class="px-4 py-2.5 text-sm font-medium transition-colors relative {{ $active ? 'text-primary-400' : 'text-[var(--text-tertiary)] hover:text-[var(--text-secondary)]' }}">
-            {{ $tab }}
-            @if($active)
-            <span class="absolute bottom-0 left-0 right-0 h-0.5 bg-primary-500 rounded-full"></span>
-            @endif
-        </button>
-        @endforeach
-    </div>
-
-    {{-- Search & Filters --}}
-    <div class="flex items-center gap-3 mb-4">
-        <div class="relative flex-1 max-w-sm">
-            <svg class="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-[var(--text-tertiary)]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
-            <input type="text" placeholder="Search campaigns..." class="w-full h-9 pl-9 pr-3 text-sm bg-[var(--surface-secondary)] border border-[var(--border-default)] rounded-[var(--radius-lg)] text-[var(--text-primary)] placeholder-[var(--text-tertiary)] focus:border-[var(--border-focus)] focus:outline-none">
+    {{-- God Tier KPIs --}}
+    <div class="grid grid-cols-2 lg:grid-cols-6 gap-4 mb-8 stagger-children">
+        {{-- KPI 1: Total Campaigns --}}
+        <div class="relative overflow-hidden rounded-xl bg-gradient-to-br from-[#1E3A8A] to-[#172554] p-5 border border-blue-500/20 shadow-lg group">
+            <div class="absolute -bottom-4 -right-4 w-16 h-16 bg-blue-500/20 rounded-full blur-xl group-hover:bg-blue-400/30 transition-all"></div>
+            <p class="text-blue-200 text-xs font-semibold uppercase tracking-wider mb-1">Total Campaigns</p>
+            <div class="flex items-center justify-between">
+                <h3 class="text-2xl font-bold text-white">0</h3>
+                <div class="w-8 h-8 rounded-lg bg-blue-500/20 flex items-center justify-center border border-blue-500/30">
+                    <svg class="w-4 h-4 text-blue-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"/></svg>
+                </div>
+            </div>
+            <p class="text-blue-400/80 text-[10px] mt-1">All campaigns</p>
         </div>
-        <x-ui.button variant="secondary" size="sm">
-            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.293A1 1 0 013 6.586V4z"/></svg>
-            Filters
-        </x-ui.button>
+
+        {{-- KPI 2: Manual Campaigns --}}
+        <div class="relative overflow-hidden rounded-xl bg-gradient-to-br from-[#064E3B] to-[#022C22] p-5 border border-success-500/20 shadow-lg group">
+            <div class="absolute -bottom-4 -right-4 w-16 h-16 bg-success-500/20 rounded-full blur-xl group-hover:bg-success-400/30 transition-all"></div>
+            <p class="text-success-200 text-xs font-semibold uppercase tracking-wider mb-1">Manual Campaigns</p>
+            <div class="flex items-center justify-between">
+                <h3 class="text-2xl font-bold text-white">0</h3>
+                <div class="w-8 h-8 rounded-lg bg-success-500/20 flex items-center justify-center border border-success-500/30">
+                    <svg class="w-4 h-4 text-success-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/></svg>
+                </div>
+            </div>
+            <p class="text-success-400/80 text-[10px] mt-1">User created</p>
+        </div>
+
+        {{-- KPI 3: AI Campaigns --}}
+        <div class="relative overflow-hidden rounded-xl bg-gradient-to-br from-[#4C1D95] to-[#2E1065] p-5 border border-purple-500/20 shadow-lg group">
+            <div class="absolute -bottom-4 -right-4 w-16 h-16 bg-purple-500/20 rounded-full blur-xl group-hover:bg-purple-400/30 transition-all"></div>
+            <p class="text-purple-200 text-xs font-semibold uppercase tracking-wider mb-1">AI Campaigns</p>
+            <div class="flex items-center justify-between">
+                <h3 class="text-2xl font-bold text-white">0</h3>
+                <div class="w-8 h-8 rounded-lg bg-purple-500/20 flex items-center justify-center border border-purple-500/30">
+                    <svg class="w-4 h-4 text-purple-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+                </div>
+            </div>
+            <p class="text-purple-400/80 text-[10px] mt-1">AI personalized</p>
+        </div>
+
+        {{-- KPI 4: Total Recipients --}}
+        <div class="relative overflow-hidden rounded-xl bg-gradient-to-br from-[#7C2D12] to-[#451A03] p-5 border border-orange-500/20 shadow-lg group">
+            <div class="absolute -bottom-4 -right-4 w-16 h-16 bg-orange-500/20 rounded-full blur-xl group-hover:bg-orange-400/30 transition-all"></div>
+            <p class="text-orange-200 text-xs font-semibold uppercase tracking-wider mb-1">Total Recipients</p>
+            <div class="flex items-center justify-between">
+                <h3 class="text-2xl font-bold text-white">0</h3>
+                <div class="w-8 h-8 rounded-lg bg-orange-500/20 flex items-center justify-center border border-orange-500/30">
+                    <svg class="w-4 h-4 text-orange-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"/></svg>
+                </div>
+            </div>
+            <p class="text-orange-400/80 text-[10px] mt-1">Email contacts</p>
+        </div>
+
+        {{-- KPI 5: Open Rate --}}
+        <div class="relative overflow-hidden rounded-xl bg-gradient-to-br from-[#831843] to-[#4C0519] p-5 border border-pink-500/20 shadow-lg group">
+            <div class="absolute -bottom-4 -right-4 w-16 h-16 bg-pink-500/20 rounded-full blur-xl group-hover:bg-pink-400/30 transition-all"></div>
+            <p class="text-pink-200 text-xs font-semibold uppercase tracking-wider mb-1">Open Rate</p>
+            <div class="flex items-center justify-between">
+                <h3 class="text-2xl font-bold text-white">0%</h3>
+                <div class="w-8 h-8 rounded-lg bg-pink-500/20 flex items-center justify-center border border-pink-500/30">
+                    <svg class="w-4 h-4 text-pink-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 19v-8.93a2 2 0 01.89-1.664l7-4.666a2 2 0 012.22 0l7 4.666A2 2 0 0121 10.07V19M3 19a2 2 0 002 2h14a2 2 0 002-2M3 19l6.75-4.5M21 19l-6.75-4.5M3 10l6.75 4.5M21 10l-6.75 4.5m0 0l-1.14.76a2 2 0 01-2.22 0l-1.14-.76"/></svg>
+                </div>
+            </div>
+            <p class="text-pink-400/80 text-[10px] mt-1">Unique opens</p>
+        </div>
+
+        {{-- KPI 6: Click Rate --}}
+        <div class="relative overflow-hidden rounded-xl bg-gradient-to-br from-[#0F766E] to-[#042F2E] p-5 border border-teal-500/20 shadow-lg group">
+            <div class="absolute -bottom-4 -right-4 w-16 h-16 bg-teal-500/20 rounded-full blur-xl group-hover:bg-teal-400/30 transition-all"></div>
+            <p class="text-teal-200 text-xs font-semibold uppercase tracking-wider mb-1">Click Rate</p>
+            <div class="flex items-center justify-between">
+                <h3 class="text-2xl font-bold text-white">0%</h3>
+                <div class="w-8 h-8 rounded-lg bg-teal-500/20 flex items-center justify-center border border-teal-500/30">
+                    <svg class="w-4 h-4 text-teal-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 15l-2 5L9 9l11 4-5 2zm0 0l5 5"/></svg>
+                </div>
+            </div>
+            <p class="text-teal-400/80 text-[10px] mt-1">Average clicks</p>
+        </div>
     </div>
 
-    {{-- Campaign Table --}}
-    <div class="card card-elevated overflow-hidden p-0">
-        <div class="overflow-x-auto">
-            <table class="w-full text-sm">
-                <thead>
-                    <tr class="bg-[var(--surface-secondary)]">
-                        <th class="text-left px-5 py-3 font-medium text-[var(--text-tertiary)] text-xs uppercase tracking-wider">
-                            <input type="checkbox" class="rounded border-[var(--border-strong)] bg-transparent">
-                        </th>
-                        <th class="text-left px-5 py-3 font-medium text-[var(--text-tertiary)] text-xs uppercase tracking-wider">Campaign</th>
-                        <th class="text-left px-5 py-3 font-medium text-[var(--text-tertiary)] text-xs uppercase tracking-wider">Status</th>
-                        <th class="text-left px-5 py-3 font-medium text-[var(--text-tertiary)] text-xs uppercase tracking-wider">Type</th>
-                        <th class="text-right px-5 py-3 font-medium text-[var(--text-tertiary)] text-xs uppercase tracking-wider">Sent</th>
-                        <th class="text-right px-5 py-3 font-medium text-[var(--text-tertiary)] text-xs uppercase tracking-wider">Opens</th>
-                        <th class="text-right px-5 py-3 font-medium text-[var(--text-tertiary)] text-xs uppercase tracking-wider">Replies</th>
-                        <th class="text-right px-5 py-3 font-medium text-[var(--text-tertiary)] text-xs uppercase tracking-wider">Meetings</th>
-                        <th class="px-5 py-3"></th>
-                    </tr>
-                </thead>
-                <tbody class="divide-y divide-[var(--border-subtle)]">
-                    @php
-                    $campaigns = [
-                        ['name' => 'Q3 SaaS Outbound', 'status' => 'Active', 'sc' => 'success', 'type' => 'AI', 'sent' => '2,450', 'opens' => '42.5%', 'replies' => '8.3%', 'meetings' => '12'],
-                        ['name' => 'Enterprise Decision Makers', 'status' => 'Active', 'sc' => 'success', 'type' => 'Manual', 'sent' => '1,200', 'opens' => '38.1%', 'replies' => '6.7%', 'meetings' => '5'],
-                        ['name' => 'Product Hunt Launch', 'status' => 'Completed', 'sc' => 'info', 'type' => 'AI', 'sent' => '5,000', 'opens' => '51.2%', 'replies' => '12.4%', 'meetings' => '18'],
-                        ['name' => 'VC Fund Managers', 'status' => 'Paused', 'sc' => 'warning', 'type' => 'Manual', 'sent' => '800', 'opens' => '35.6%', 'replies' => '4.2%', 'meetings' => '2'],
-                        ['name' => 'Agency Partners Outreach', 'status' => 'Draft', 'sc' => 'default', 'type' => 'AI', 'sent' => '—', 'opens' => '—', 'replies' => '—', 'meetings' => '—'],
-                        ['name' => 'Series A Startups', 'status' => 'Active', 'sc' => 'success', 'type' => 'Manual', 'sent' => '3,200', 'opens' => '44.8%', 'replies' => '9.1%', 'meetings' => '8'],
-                    ];
-                    @endphp
-                    @foreach($campaigns as $c)
-                    <tr class="hover:bg-[var(--surface-secondary)] transition-colors cursor-pointer group">
-                        <td class="px-5 py-3.5"><input type="checkbox" class="rounded border-[var(--border-strong)] bg-transparent"></td>
-                        <td class="px-5 py-3.5">
-                            <div class="font-medium text-[var(--text-primary)] group-hover:text-primary-400 transition-colors">{{ $c['name'] }}</div>
-                        </td>
-                        <td class="px-5 py-3.5"><x-ui.badge variant="{{ $c['sc'] }}" :dot="true">{{ $c['status'] }}</x-ui.badge></td>
-                        <td class="px-5 py-3.5">
-                            <span class="text-xs font-medium {{ $c['type'] === 'AI' ? 'text-primary-400' : 'text-[var(--text-tertiary)]' }}">{{ $c['type'] }}</span>
-                        </td>
-                        <td class="px-5 py-3.5 text-right text-[var(--text-secondary)]">{{ $c['sent'] }}</td>
-                        <td class="px-5 py-3.5 text-right text-[var(--text-secondary)]">{{ $c['opens'] }}</td>
-                        <td class="px-5 py-3.5 text-right text-[var(--text-secondary)]">{{ $c['replies'] }}</td>
-                        <td class="px-5 py-3.5 text-right text-[var(--text-secondary)]">{{ $c['meetings'] }}</td>
-                        <td class="px-5 py-3.5 text-right">
-                            <button class="p-1.5 rounded-[var(--radius-md)] hover:bg-[var(--surface-tertiary)] text-[var(--text-tertiary)] opacity-0 group-hover:opacity-100 transition-all">
-                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 5v.01M12 12v.01M12 19v.01M12 6a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2z"/></svg>
-                            </button>
-                        </td>
-                    </tr>
-                    @endforeach
-                </tbody>
-            </table>
+    {{-- Filters Toolbar --}}
+    <div class="flex flex-col md:flex-row items-center gap-4 mb-6">
+        <div class="relative flex-1 w-full group">
+            <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+                <svg class="h-5 w-5 text-[var(--text-tertiary)] group-focus-within:text-primary-500 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+            </div>
+            <input type="text" placeholder="Search campaigns by name, description, or email list..." class="block w-full pl-11 pr-4 py-3 bg-[var(--surface-secondary)]/50 backdrop-blur-sm border border-[var(--border-default)] rounded-xl text-sm placeholder-[var(--text-tertiary)] text-[var(--text-primary)] focus:outline-none focus:ring-2 focus:ring-primary-500/50 focus:border-primary-500 transition-all shadow-sm">
         </div>
-        {{-- Pagination --}}
-        <div class="flex items-center justify-between px-5 py-3 border-t border-[var(--border-default)] bg-[var(--surface-secondary)]">
-            <span class="text-sm text-[var(--text-tertiary)]">Showing 1–6 of 24 campaigns</span>
-            <div class="flex items-center gap-1">
-                <button class="px-3 py-1.5 text-sm rounded-[var(--radius-md)] text-[var(--text-tertiary)] hover:bg-[var(--surface-tertiary)] transition-colors">Previous</button>
-                <button class="px-3 py-1.5 text-sm rounded-[var(--radius-md)] bg-primary-600 text-white">1</button>
-                <button class="px-3 py-1.5 text-sm rounded-[var(--radius-md)] text-[var(--text-secondary)] hover:bg-[var(--surface-tertiary)] transition-colors">2</button>
-                <button class="px-3 py-1.5 text-sm rounded-[var(--radius-md)] text-[var(--text-secondary)] hover:bg-[var(--surface-tertiary)] transition-colors">3</button>
-                <button class="px-3 py-1.5 text-sm rounded-[var(--radius-md)] text-[var(--text-tertiary)] hover:bg-[var(--surface-tertiary)] transition-colors">Next</button>
+        
+        <div class="flex items-center gap-3 w-full md:w-auto">
+            <select class="bg-[var(--surface-secondary)]/50 backdrop-blur-sm border border-[var(--border-default)] text-[var(--text-secondary)] text-sm rounded-xl focus:ring-primary-500 focus:border-primary-500 block p-3 appearance-none hover:bg-[var(--surface-tertiary)] transition-colors cursor-pointer min-w-[140px]">
+                <option selected>All Status</option>
+                <option value="active">Active</option>
+                <option value="draft">Draft</option>
+                <option value="paused">Paused</option>
+                <option value="completed">Completed</option>
+            </select>
+            
+            <select class="bg-[var(--surface-secondary)]/50 backdrop-blur-sm border border-[var(--border-default)] text-[var(--text-secondary)] text-sm rounded-xl focus:ring-primary-500 focus:border-primary-500 block p-3 appearance-none hover:bg-[var(--surface-tertiary)] transition-colors cursor-pointer min-w-[140px]">
+                <option selected>All Types</option>
+                <option value="ai">AI Generated</option>
+                <option value="manual">Manual</option>
+            </select>
+
+            <button class="flex items-center justify-center gap-2 px-4 py-3 bg-[var(--surface-secondary)]/50 backdrop-blur-sm border border-[var(--border-default)] rounded-xl hover:bg-[var(--surface-tertiary)] transition-colors text-sm font-medium text-[var(--text-secondary)]">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.293A1 1 0 013 6.586V4z"/></svg>
+                Filters
+            </button>
+            
+            <div class="flex items-center bg-[var(--surface-secondary)]/50 backdrop-blur-sm border border-[var(--border-default)] rounded-xl p-1">
+                <button class="p-2 bg-[var(--surface-primary)] rounded-lg shadow-sm text-primary-400">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"/></svg>
+                </button>
+                <button class="p-2 text-[var(--text-tertiary)] hover:text-[var(--text-secondary)] transition-colors">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+                </button>
             </div>
         </div>
+    </div>
+
+    {{-- Main View Area / Empty State --}}
+    <div class="relative bg-[var(--surface-secondary)]/30 backdrop-blur-xl border border-[var(--border-default)] rounded-2xl overflow-hidden shadow-2xl min-h-[400px] flex items-center justify-center">
+        
+        <div class="px-6 py-24 flex flex-col items-center justify-center text-center relative w-full h-full">
+            {{-- Decorative Background Elements for Empty State --}}
+            <div class="absolute inset-0 flex items-center justify-center pointer-events-none opacity-20">
+                <div class="w-[500px] h-[500px] bg-purple-500/20 rounded-full blur-[120px]"></div>
+            </div>
+            
+            <div class="w-24 h-24 bg-gradient-to-br from-[var(--surface-secondary)] to-[var(--surface-tertiary)] rounded-2xl flex items-center justify-center mb-8 shadow-inner border border-[var(--border-strong)] relative transform rotate-3">
+                <div class="absolute inset-0 bg-primary-500/10 rounded-2xl animate-pulse"></div>
+                <div class="absolute -top-3 -right-3 w-8 h-8 bg-gradient-to-r from-purple-500 to-primary-500 rounded-full flex items-center justify-center shadow-lg transform -rotate-3">
+                    <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/></svg>
+                </div>
+                <svg class="w-12 h-12 text-[var(--text-tertiary)] relative z-10 transform -rotate-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+            </div>
+            
+            <h3 class="text-2xl font-bold text-[var(--text-primary)] mb-3 tracking-tight">No Campaigns Yet</h3>
+            <p class="text-[var(--text-secondary)] max-w-lg mb-10 text-lg leading-relaxed">Get started by creating your first highly targeted email campaign. Choose between powerful manual sequencing or AI-personalized outreach.</p>
+            
+            <x-ui.button class="relative bg-gradient-to-r from-primary-600 to-purple-600 hover:from-primary-500 hover:to-purple-500 text-white shadow-xl shadow-primary-500/30 border-none px-8 py-3.5 group overflow-hidden text-base">
+                <div class="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-300 ease-in-out"></div>
+                <span class="relative z-10 flex items-center font-bold tracking-wide">
+                    <svg class="w-5 h-5 mr-2.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/></svg>
+                    Create Your First Campaign
+                </span>
+            </x-ui.button>
+        </div>
+        
     </div>
 </div>

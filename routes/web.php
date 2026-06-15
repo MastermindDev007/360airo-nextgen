@@ -41,7 +41,7 @@ Route::get('/contacts', ContactList::class)->name('contacts');
 Route::get('/contacts/prospect-finder', ProspectFinder::class)->name('contacts.finder');
 Route::get('/inbox', UnifiedInbox::class)->name('inbox');
 Route::get('/pipeline', DealBoard::class)->name('pipeline');
-Route::get('/email-accounts', AccountList::class)->name('accounts');
+Route::get('/accounts', AccountList::class)->name('accounts');
 Route::get('/warmup', WarmupDashboard::class)->name('warmup');
 Route::get('/templates', TemplateLibrary::class)->name('templates');
 Route::get('/workflows', WorkflowList::class)->name('workflows');
