@@ -12,9 +12,7 @@
     <div class="p-4 border-b border-[var(--border-subtle)] gsap-sidebar-item">
         <button class="w-full flex items-center justify-between p-2 rounded-xl hover:bg-[var(--surface-secondary)] transition-all group glow-element">
             <div class="flex items-center gap-3">
-                <div class="w-8 h-8 rounded-lg bg-gradient-to-b from-primary-500 to-primary-700 flex items-center justify-center shadow-[inset_0_1px_0_rgba(255,255,255,0.2)]">
-                    <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/></svg>
-                </div>
+                <x-logo variant="compact" />
                 <div class="text-left" x-show="sidebarStyle === 'expanded' || isHovered" x-transition.opacity>
                     <div class="text-sm font-bold text-[var(--text-primary)] leading-tight tracking-tight">360Airo</div>
                     <div class="text-[11px] font-medium text-[var(--text-tertiary)] leading-tight">Master Workspace</div>

@@ -20,7 +20,12 @@
             </div>
         </button>
 
-        <div class="flex flex-col justify-center">
+        {{-- Mobile Logo --}}
+        <div class="lg:hidden flex items-center">
+            <x-logo variant="compact" />
+        </div>
+
+        <div class="hidden sm:flex flex-col justify-center">
             <h1 class="text-lg font-bold text-[var(--text-primary)] tracking-tight">Welcome back Dev 👋</h1>
             <p class="text-[12px] text-[var(--text-tertiary)] font-medium mt-0.5">Here's what's happening with your campaigns today.</p>
         </div>

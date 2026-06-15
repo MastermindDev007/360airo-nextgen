@@ -7,6 +7,13 @@
     <meta name="description" content="{{ $metaDescription ?? '360Airo — AI-Powered Outbound Outreach Platform' }}">
     <title>{{ isset($title) ? $title . ' — 360Airo' : '360Airo' }}</title>
 
+    {{-- Favicon & Branding --}}
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="manifest" href="/site.webmanifest">
+
     {{-- Preload critical fonts --}}
     <link rel="preconnect" href="https://fonts.bunny.net" crossorigin>
 
@@ -70,6 +77,24 @@
       @theme-settings-updated.window="sidebarStyle = $event.detail.sidebar_style">
     {{-- Skip to content --}}
     <a href="#main-content" class="skip-link">Skip to content</a>
+
+    {{-- Global 3D Preloader --}}
+    <div id="global-preloader" class="fixed inset-0 z-[99999] flex flex-col items-center justify-center bg-[var(--surface-bg)] transition-opacity duration-700">
+        <canvas id="preloader-3d-canvas" class="absolute inset-0 pointer-events-none"></canvas>
+        
+        <div class="relative z-10 flex flex-col items-center">
+            <x-logo variant="glass" class="mb-6 scale-150 transform origin-center drop-shadow-2xl" />
+            
+            <div class="h-[2px] w-48 bg-[var(--surface-tertiary)] rounded-full overflow-hidden relative">
+                <div id="preloader-bar" class="absolute top-0 left-0 h-full w-0 bg-[var(--color-primary-500)] shadow-[0_0_10px_var(--color-primary-500)] rounded-full transition-all duration-300"></div>
+            </div>
+            
+            <div class="mt-4 flex items-center justify-between w-48 text-sm font-mono text-[var(--text-secondary)]">
+                <span class="uppercase tracking-widest text-[10px]">Initializing System</span>
+                <span id="preloader-percentage">0%</span>
+            </div>
+        </div>
+    </div>
 
     {{-- Premium Dynamic Mesh Gradient Orbs --}}
     <div class="fixed inset-0 z-0 pointer-events-none overflow-hidden">
@@ -239,6 +264,172 @@
     </style>
 
     <script>
+        // --- Global 3D Preloader Engine ---
+        const initGlobalPreloader = () => {
+            const preloader = document.getElementById('global-preloader');
+            const canvas = document.getElementById('preloader-3d-canvas');
+            const percentText = document.getElementById('preloader-percentage');
+            const bar = document.getElementById('preloader-bar');
+            const mainWrapper = document.getElementById('main-wrapper');
+            
+            if(!preloader || !canvas || typeof THREE === 'undefined' || typeof gsap === 'undefined') {
+                if(preloader) preloader.style.display = 'none';
+                return;
+            }
+
+            // Cinematic Entrance Prep
+            if(mainWrapper) gsap.set(mainWrapper, { scale: 0.95, opacity: 0 });
+
+            // Scene Setup
+            const scene = new THREE.Scene();
+            // Fallback for primary color if CSS var is empty during early load
+            let primaryColorStr = getComputedStyle(document.documentElement).getPropertyValue('--color-primary-500').trim();
+            if(!primaryColorStr) primaryColorStr = '#6366f1';
+            
+            const camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.1, 1000);
+            camera.position.z = 20;
+
+            const renderer = new THREE.WebGLRenderer({ canvas: canvas, alpha: true, antialias: true });
+            renderer.setSize(window.innerWidth, window.innerHeight);
+            renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+
+            // The Orbital Core (Icosahedron)
+            const coreGeometry = new THREE.IcosahedronGeometry(2, 0);
+            const coreMaterial = new THREE.MeshBasicMaterial({ 
+                color: primaryColorStr,
+                wireframe: true,
+                transparent: true,
+                opacity: 0.8
+            });
+            const core = new THREE.Mesh(coreGeometry, coreMaterial);
+            scene.add(core);
+
+            // Orbital Rings
+            const rings = [];
+            for(let i=0; i<3; i++) {
+                const ringGeo = new THREE.TorusGeometry(3.5 + i*1.2, 0.02, 32, 100);
+                const ringMat = new THREE.MeshBasicMaterial({ 
+                    color: primaryColorStr, 
+                    transparent: true, 
+                    opacity: 0.3 - (i*0.05)
+                });
+                const ring = new THREE.Mesh(ringGeo, ringMat);
+                ring.rotation.x = Math.random() * Math.PI;
+                ring.rotation.y = Math.random() * Math.PI;
+                scene.add(ring);
+                rings.push({ 
+                    mesh: ring, 
+                    speed: (Math.random() * 0.015) + 0.01, 
+                    axis: new THREE.Vector3(Math.random(), Math.random(), Math.random()).normalize() 
+                });
+            }
+
+            // Animation Loop
+            let reqId;
+            const clock = new THREE.Clock();
+            
+            const animate = () => {
+                reqId = requestAnimationFrame(animate);
+                const time = clock.getElapsedTime();
+
+                // Core rotation
+                core.rotation.y += 0.01;
+                core.rotation.x += 0.005;
+                
+                // Core pulsing
+                const scale = 1 + Math.sin(time * 2) * 0.05;
+                core.scale.set(scale, scale, scale);
+
+                // Rings rotation
+                rings.forEach(r => r.mesh.rotateOnAxis(r.axis, r.speed));
+
+                renderer.render(scene, camera);
+            };
+            
+            animate();
+
+            // Resize Handler
+            const onResize = () => {
+                camera.aspect = window.innerWidth / window.innerHeight;
+                camera.updateProjectionMatrix();
+                renderer.setSize(window.innerWidth, window.innerHeight);
+            };
+            window.addEventListener('resize', onResize);
+
+            // Progress Simulation Engine
+            let progress = { val: 0 };
+            
+            const progressAnim = gsap.to(progress, {
+                val: 85,
+                duration: 2.5,
+                ease: "power2.out",
+                onUpdate: () => {
+                    percentText.innerText = Math.round(progress.val) + '%';
+                    bar.style.width = progress.val + '%';
+                }
+            });
+
+            // Cinematic Exit Routine
+            const finishLoading = () => {
+                progressAnim.kill();
+                
+                gsap.to(progress, {
+                    val: 100,
+                    duration: 0.6,
+                    ease: "power2.inOut",
+                    onUpdate: () => {
+                        percentText.innerText = Math.round(progress.val) + '%';
+                        bar.style.width = progress.val + '%';
+                    },
+                    onComplete: () => {
+                        const tl = gsap.timeline({
+                            onComplete: () => {
+                                preloader.style.display = 'none';
+                                cancelAnimationFrame(reqId);
+                                renderer.dispose();
+                                window.removeEventListener('resize', onResize);
+                                document.dispatchEvent(new CustomEvent('preloader-finished'));
+                            }
+                        });
+                        
+                        // Warp Exit Effect
+                        tl.to(core.scale, { x: 0.1, y: 0.1, z: 0.1, duration: 0.5, ease: "back.in(1.7)" }, 0);
+                        rings.forEach((r, idx) => {
+                            tl.to(r.mesh.scale, { x: 3, y: 3, z: 3, duration: 0.8, ease: "power3.out" }, 0);
+                            tl.to(r.mesh.material, { opacity: 0, duration: 0.5, ease: "power2.out" }, 0.1);
+                        });
+                        
+                        // Fade out Text UI
+                        tl.to(preloader.querySelector('.relative.z-10'), { opacity: 0, y: -20, duration: 0.4, ease: "power2.in" }, 0.2);
+                        
+                        // Fade Preloader Overlay
+                        tl.to(preloader, { opacity: 0, duration: 0.8, ease: "power2.inOut" }, 0.4);
+                        
+                        // Scale in Main App
+                        if(mainWrapper) {
+                            tl.to(mainWrapper, { scale: 1, opacity: 1, duration: 1.2, ease: "expo.out" }, 0.6);
+                        }
+                    }
+                });
+            };
+
+            // Trigger Finish on Load
+            if (document.readyState === 'complete') {
+                setTimeout(finishLoading, 600);
+            } else {
+                window.addEventListener('load', () => setTimeout(finishLoading, 600));
+            }
+            
+            // Handle Livewire SPA Navigation Hook (Optional)
+            document.addEventListener('livewire:navigating', () => {
+                // Preloader is handled gracefully on full-page loads.
+                // We leave SPA micro-loaders to Livewire's default progress bar to avoid heavy 3D hijacking.
+            });
+        };
+        
+        // Execute immediately
+        initGlobalPreloader();
+
         document.addEventListener('DOMContentLoaded', () => {
             
             // --- Custom Live Cursor Logic ---
