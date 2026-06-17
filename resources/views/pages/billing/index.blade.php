@@ -52,8 +52,9 @@
 
     {{-- Billing History --}}
     <h2 class="text-lg font-semibold text-[var(--text-primary)] mb-4">Billing History</h2>
-    <div class="card p-0 overflow-hidden">
-        <table class="w-full text-sm text-left">
+    <div class="card p-0 overflow-hidden w-full min-w-0">
+        <div class="overflow-x-auto hide-scrollbar w-full">
+            <table class="w-full text-sm text-left">
             <thead>
                 <tr class="bg-[var(--surface-secondary)] border-b border-[var(--border-default)]">
                     <th class="px-5 py-3 font-medium text-[var(--text-tertiary)] text-xs uppercase">Date</th>
@@ -77,5 +78,6 @@
                 @endforeach
             </tbody>
         </table>
+        </div>
     </div>
 </div>

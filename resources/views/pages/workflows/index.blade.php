@@ -4,8 +4,8 @@
             <h1 class="text-2xl font-bold text-[var(--text-primary)] tracking-tight">AI Workflows</h1>
             <p class="text-sm text-[var(--text-tertiary)] mt-1">Automate tasks, enrichment, and personalization with AI</p>
         </div>
-        <div class="flex gap-2">
-            <x-ui.button variant="primary">
+        <div class="flex flex-wrap gap-2 mt-4 sm:mt-0">
+            <x-ui.button variant="primary" class="flex-1 sm:flex-none justify-center">
                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/></svg>
                 Create Workflow
             </x-ui.button>

@@ -363,17 +363,26 @@ body.spacing-spacious #main-content > div {
     border: 1px solid var(--border-default);
     border-radius: var(--radius-xl);
     padding: 20px 24px;
-    transition: border-color var(--duration-fast) var(--ease-default),
-                box-shadow var(--duration-fast) var(--ease-default);
+    transition: all var(--duration-normal) var(--ease-out);
 }
 .card:hover {
-    border-color: var(--border-strong);
+    border-color: var(--border-focus);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
 }
 .card-elevated {
     box-shadow: var(--shadow-sm);
 }
 .card-elevated:hover {
-    box-shadow: var(--shadow-md);
+    box-shadow: var(--shadow-lg);
+}
+
+/* Premium Table Rows */
+table tbody tr {
+    transition: background-color var(--duration-fast) var(--ease-default), transform var(--duration-fast) var(--ease-out);
+}
+table tbody tr:hover {
+    background-color: var(--surface-secondary);
 }
 
 /* Glass effect */
@@ -548,4 +557,11 @@ body.spacing-spacious #main-content > div {
     backdrop-filter: blur(8px);
     z-index: var(--z-command);
     animation: fadeIn var(--duration-fast) var(--ease-default);
+}
+
+/* Mobile Sidebar Override */
+@media (max-width: 1023px) {
+    .sidebar.mobile-open {
+        transform: translateX(0) !important;
+    }
 }

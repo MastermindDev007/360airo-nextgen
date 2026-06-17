@@ -4,16 +4,16 @@
             <h1 class="text-2xl font-bold text-[var(--text-primary)] tracking-tight">Prospect Finder</h1>
             <p class="text-sm text-[var(--text-tertiary)] mt-1">Search our B2B database of 250M+ contacts</p>
         </div>
-        <div class="flex gap-2">
-            <x-ui.button variant="secondary">Saved Searches</x-ui.button>
-            <x-ui.button variant="primary">
+        <div class="flex flex-wrap gap-2 mt-4 sm:mt-0">
+            <x-ui.button variant="secondary" class="flex-1 sm:flex-none justify-center">Saved Searches</x-ui.button>
+            <x-ui.button variant="primary" class="flex-1 sm:flex-none justify-center">
                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/></svg>
                 Export Selected
             </x-ui.button>
         </div>
     </x-slot:header>
 
-    <div class="flex flex-col lg:flex-row gap-6 h-[calc(100vh-180px)]">
+    <div class="flex flex-col lg:flex-row gap-6 min-h-[calc(100vh-180px)] lg:h-[calc(100vh-180px)]">
         {{-- Search Filters Sidebar --}}
         <div class="w-full lg:w-72 flex-shrink-0 flex flex-col gap-4 overflow-y-auto pr-2 custom-scrollbar">
             <div class="card p-4">
@@ -56,8 +56,8 @@
         </div>
 
         {{-- Results --}}
-        <div class="flex-1 flex flex-col card p-0 overflow-hidden">
-            <div class="p-4 border-b border-[var(--border-default)] flex justify-between items-center bg-[var(--surface-secondary)]/50">
+        <div class="flex-1 flex flex-col card p-0 overflow-hidden min-w-0">
+            <div class="p-4 border-b border-[var(--border-default)] flex flex-col sm:flex-row justify-between items-start sm:items-center bg-[var(--surface-secondary)]/50 gap-3">
                 <span class="text-sm font-medium text-[var(--text-primary)]">14,205 prospects found</span>
                 <div class="flex items-center gap-2">
                     <span class="text-xs text-[var(--text-tertiary)]">Sort by:</span>
@@ -69,7 +69,7 @@
                 </div>
             </div>
             
-            <div class="flex-1 overflow-x-auto">
+            <div class="flex-1 overflow-x-auto hide-scrollbar w-full">
                 <table class="w-full text-sm">
                     <thead>
                         <tr class="bg-[var(--surface-secondary)] border-b border-[var(--border-default)]">

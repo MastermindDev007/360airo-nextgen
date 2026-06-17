@@ -1,13 +1,15 @@
 <div>
     <x-slot:header>
-        <div>
-            <h1 class="text-2xl font-bold text-[var(--text-primary)] tracking-tight">Events & Triggers</h1>
-            <p class="text-sm text-[var(--text-tertiary)] mt-1">Trigger campaigns based on real-world intent signals</p>
+        <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+            <div>
+                <h1 class="text-2xl font-bold text-[var(--text-primary)] tracking-tight">Events & Triggers</h1>
+                <p class="text-sm text-[var(--text-tertiary)] mt-1">Trigger campaigns based on real-world intent signals</p>
+            </div>
+            <x-ui.button variant="primary" class="w-full sm:w-auto justify-center">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/></svg>
+                Create Trigger
+            </x-ui.button>
         </div>
-        <x-ui.button variant="primary">
-            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/></svg>
-            Create Trigger
-        </x-ui.button>
     </x-slot:header>
 
     {{-- Event Types Grid --}}
@@ -50,17 +52,18 @@
 
     {{-- Recent Event Logs --}}
     <h2 class="text-lg font-semibold text-[var(--text-primary)] mb-4">Recent Trigger Logs</h2>
-    <div class="card p-0 overflow-hidden">
-        <table class="w-full text-sm text-left">
-            <thead>
-                <tr class="bg-[var(--surface-secondary)] border-b border-[var(--border-default)]">
-                    <th class="px-5 py-3 font-medium text-[var(--text-tertiary)] text-xs uppercase">Time</th>
-                    <th class="px-5 py-3 font-medium text-[var(--text-tertiary)] text-xs uppercase">Event</th>
-                    <th class="px-5 py-3 font-medium text-[var(--text-tertiary)] text-xs uppercase">Company/Person</th>
-                    <th class="px-5 py-3 font-medium text-[var(--text-tertiary)] text-xs uppercase">Action Taken</th>
-                </tr>
-            </thead>
-            <tbody class="divide-y divide-[var(--border-subtle)]">
+    <div class="card p-0 overflow-hidden w-full min-w-0">
+        <div class="overflow-x-auto hide-scrollbar w-full">
+            <table class="w-full text-sm text-left">
+                <thead>
+                    <tr class="bg-[var(--surface-secondary)] border-b border-[var(--border-default)]">
+                        <th class="px-5 py-3 font-medium text-[var(--text-tertiary)] text-xs uppercase">Time</th>
+                        <th class="px-5 py-3 font-medium text-[var(--text-tertiary)] text-xs uppercase">Event</th>
+                        <th class="px-5 py-3 font-medium text-[var(--text-tertiary)] text-xs uppercase">Company/Person</th>
+                        <th class="px-5 py-3 font-medium text-[var(--text-tertiary)] text-xs uppercase">Action Taken</th>
+                    </tr>
+                </thead>
+                <tbody class="divide-y divide-[var(--border-subtle)]">
                 <tr>
                     <td class="px-5 py-3 text-[var(--text-tertiary)] text-xs">10 mins ago</td>
                     <td class="px-5 py-3"><x-ui.badge variant="success" size="sm">Funding Raised</x-ui.badge></td>
@@ -75,5 +78,6 @@
                 </tr>
             </tbody>
         </table>
+        </div>
     </div>
 </div>

@@ -1,22 +1,22 @@
 {{-- NextGen Reimagined Top Bar --}}
-<header class="h-[72px] bg-[var(--surface-primary)] border-b border-[var(--border-subtle)] flex items-center justify-between px-6 z-30">
+<header class="h-[72px] bg-[var(--surface-primary)] border-b border-[var(--border-subtle)] flex items-center justify-between px-4 sm:px-6 z-30">
     
     {{-- Left Side: Toggle & Context --}}
-    <div class="flex items-center gap-4 w-1/3 gsap-topbar-item">
+    <div class="flex items-center gap-3 sm:gap-4 w-auto lg:w-1/3 gsap-topbar-item">
         {{-- Advanced Hamburger Toggle --}}
         <button 
-            @click="sidebarStyle = sidebarStyle === 'collapsed' ? 'expanded' : 'collapsed'"
+            @click="isMobile ? (mobileSidebarOpen = !mobileSidebarOpen) : (sidebarStyle = sidebarStyle === 'collapsed' ? 'expanded' : 'collapsed')"
             class="glow-element p-2 rounded-xl text-[var(--text-secondary)] hover:bg-[var(--surface-secondary)] hover:text-[var(--text-primary)] transition-all focus:outline-none flex-shrink-0" 
             aria-label="Toggle Sidebar">
             
             {{-- Hamburger / Close Icon (Animates based on state) --}}
             <div class="relative w-5 h-5 flex flex-col justify-center items-center">
                 <span class="absolute block h-[2px] w-5 bg-current rounded-full transition-all duration-300 ease-[var(--ease-spring)]" 
-                      :class="{'rotate-45': sidebarStyle === 'expanded', '-translate-y-1.5': sidebarStyle === 'collapsed'}"></span>
+                      :class="{'rotate-45': (isMobile ? mobileSidebarOpen : sidebarStyle === 'expanded'), '-translate-y-1.5': (isMobile ? !mobileSidebarOpen : sidebarStyle === 'collapsed')}"></span>
                 <span class="absolute block h-[2px] w-5 bg-current rounded-full transition-all duration-300 ease-[var(--ease-spring)]" 
-                      :class="{'opacity-0 scale-x-0': sidebarStyle === 'expanded'}"></span>
+                      :class="{'opacity-0 scale-x-0': (isMobile ? mobileSidebarOpen : sidebarStyle === 'expanded')}"></span>
                 <span class="absolute block h-[2px] w-5 bg-current rounded-full transition-all duration-300 ease-[var(--ease-spring)]" 
-                      :class="{'-rotate-45': sidebarStyle === 'expanded', 'translate-y-1.5': sidebarStyle === 'collapsed'}"></span>
+                      :class="{'-rotate-45': (isMobile ? mobileSidebarOpen : sidebarStyle === 'expanded'), 'translate-y-1.5': (isMobile ? !mobileSidebarOpen : sidebarStyle === 'collapsed')}"></span>
             </div>
         </button>
 
@@ -32,7 +32,7 @@
     </div>
 
     {{-- Center: Command-K Search (Vercel/Linear Style) --}}
-    <div class="flex-1 flex justify-center w-1/3 gsap-topbar-item">
+    <div class="hidden md:flex flex-1 justify-center lg:w-1/3 gsap-topbar-item">
         <button class="glow-element flex items-center justify-between w-full max-w-md px-4 py-2 bg-[var(--surface-secondary)] border border-[var(--border-subtle)] hover:border-[var(--border-strong)] rounded-xl text-[13px] text-[var(--text-tertiary)] transition-all shadow-sm hover:shadow group focus:outline-none focus:ring-2 focus:ring-primary-500/20">
             <div class="flex items-center gap-2">
                 <svg class="w-4 h-4 text-[var(--text-tertiary)] group-hover:text-[var(--text-secondary)] transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
@@ -46,7 +46,7 @@
     </div>
 
     {{-- Right Side: Actions & Profile --}}
-    <div class="flex items-center justify-end gap-3 w-1/3 gsap-topbar-item">
+    <div class="flex items-center justify-end gap-2 sm:gap-3 w-auto lg:w-1/3 gsap-topbar-item">
         
         {{-- 3-State Segmented Theme Toggle --}}
         <div class="relative flex items-center p-1 bg-[var(--surface-primary)] border border-[var(--border-subtle)] rounded-xl overflow-hidden"

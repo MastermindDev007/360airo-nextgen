@@ -4,12 +4,12 @@
             <h1 class="text-3xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-[var(--text-primary)] to-[var(--text-secondary)] tracking-tight">Email Campaigns</h1>
             <p class="text-sm text-[var(--text-tertiary)] mt-1 font-medium">Create, schedule and track your sophisticated outreach campaigns</p>
         </div>
-        <div class="flex items-center gap-3">
-            <x-ui.button variant="secondary" class="bg-[var(--surface-secondary)]/50 backdrop-blur-md border-[var(--border-subtle)] hover:bg-[var(--surface-tertiary)]">
+        <div class="flex flex-wrap items-center gap-3 mt-4 sm:mt-0 w-full sm:w-auto">
+            <x-ui.button variant="secondary" class="bg-[var(--surface-secondary)]/50 backdrop-blur-md border-[var(--border-subtle)] hover:bg-[var(--surface-tertiary)] flex-1 sm:flex-none justify-center">
                 <svg class="w-4 h-4 mr-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/></svg>
                 Refresh
             </x-ui.button>
-            <x-ui.button class="bg-gradient-to-r from-primary-600 to-purple-600 hover:from-primary-500 hover:to-purple-500 text-white shadow-lg shadow-primary-500/25 border-none">
+            <x-ui.button class="bg-gradient-to-r from-primary-600 to-purple-600 hover:from-primary-500 hover:to-purple-500 text-white shadow-lg shadow-primary-500/25 border-none flex-1 sm:flex-none justify-center">
                 <svg class="w-4 h-4 mr-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/></svg>
                 New Campaign
             </x-ui.button>
@@ -106,8 +106,8 @@
             <input type="text" placeholder="Search campaigns by name, description, or email list..." class="block w-full pl-11 pr-4 py-3 bg-[var(--surface-secondary)]/50 backdrop-blur-sm border border-[var(--border-default)] rounded-xl text-sm placeholder-[var(--text-tertiary)] text-[var(--text-primary)] focus:outline-none focus:ring-2 focus:ring-primary-500/50 focus:border-primary-500 transition-all shadow-sm">
         </div>
         
-        <div class="flex items-center gap-3 w-full md:w-auto">
-            <select class="bg-[var(--surface-secondary)]/50 backdrop-blur-sm border border-[var(--border-default)] text-[var(--text-secondary)] text-sm rounded-xl focus:ring-primary-500 focus:border-primary-500 block p-3 appearance-none hover:bg-[var(--surface-tertiary)] transition-colors cursor-pointer min-w-[140px]">
+        <div class="flex flex-wrap items-center gap-3 w-full md:w-auto">
+            <select class="flex-1 sm:flex-none bg-[var(--surface-secondary)]/50 backdrop-blur-sm border border-[var(--border-default)] text-[var(--text-secondary)] text-sm rounded-xl focus:ring-primary-500 focus:border-primary-500 block p-3 appearance-none hover:bg-[var(--surface-tertiary)] transition-colors cursor-pointer min-w-[140px]">
                 <option selected>All Status</option>
                 <option value="active">Active</option>
                 <option value="draft">Draft</option>
@@ -115,13 +115,13 @@
                 <option value="completed">Completed</option>
             </select>
             
-            <select class="bg-[var(--surface-secondary)]/50 backdrop-blur-sm border border-[var(--border-default)] text-[var(--text-secondary)] text-sm rounded-xl focus:ring-primary-500 focus:border-primary-500 block p-3 appearance-none hover:bg-[var(--surface-tertiary)] transition-colors cursor-pointer min-w-[140px]">
+            <select class="flex-1 sm:flex-none bg-[var(--surface-secondary)]/50 backdrop-blur-sm border border-[var(--border-default)] text-[var(--text-secondary)] text-sm rounded-xl focus:ring-primary-500 focus:border-primary-500 block p-3 appearance-none hover:bg-[var(--surface-tertiary)] transition-colors cursor-pointer min-w-[140px]">
                 <option selected>All Types</option>
                 <option value="ai">AI Generated</option>
                 <option value="manual">Manual</option>
             </select>
 
-            <button class="flex items-center justify-center gap-2 px-4 py-3 bg-[var(--surface-secondary)]/50 backdrop-blur-sm border border-[var(--border-default)] rounded-xl hover:bg-[var(--surface-tertiary)] transition-colors text-sm font-medium text-[var(--text-secondary)]">
+            <button class="flex-1 sm:flex-none flex items-center justify-center gap-2 px-4 py-3 bg-[var(--surface-secondary)]/50 backdrop-blur-sm border border-[var(--border-default)] rounded-xl hover:bg-[var(--surface-tertiary)] transition-colors text-sm font-medium text-[var(--text-secondary)]">
                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.293A1 1 0 013 6.586V4z"/></svg>
                 Filters
             </button>
@@ -142,8 +142,8 @@
         
         <div class="px-6 py-24 flex flex-col items-center justify-center text-center relative w-full h-full">
             {{-- Decorative Background Elements for Empty State --}}
-            <div class="absolute inset-0 flex items-center justify-center pointer-events-none opacity-20">
-                <div class="w-[500px] h-[500px] bg-purple-500/20 rounded-full blur-[120px]"></div>
+            <div class="absolute inset-0 flex items-center justify-center pointer-events-none opacity-20 overflow-hidden">
+                <div class="w-64 h-64 md:w-[500px] md:h-[500px] bg-purple-500/20 rounded-full blur-[80px] md:blur-[120px]"></div>
             </div>
             
             <div class="w-24 h-24 bg-gradient-to-br from-[var(--surface-secondary)] to-[var(--surface-tertiary)] rounded-2xl flex items-center justify-center mb-8 shadow-inner border border-[var(--border-strong)] relative transform rotate-3">

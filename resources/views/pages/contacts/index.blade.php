@@ -4,12 +4,12 @@
             <h1 class="text-2xl font-bold text-[var(--text-primary)] tracking-tight">Contacts & Lists</h1>
             <p class="text-sm text-[var(--text-tertiary)] mt-1">Manage your prospects and contact database</p>
         </div>
-        <div class="flex gap-2">
-            <x-ui.button variant="secondary" href="/contacts/import">
+        <div class="flex flex-wrap gap-2 mt-4 sm:mt-0">
+            <x-ui.button variant="secondary" href="/contacts/import" class="flex-1 sm:flex-none justify-center">
                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12"/></svg>
                 Import
             </x-ui.button>
-            <x-ui.button variant="primary">
+            <x-ui.button variant="primary" class="flex-1 sm:flex-none justify-center">
                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/></svg>
                 Add Contact
             </x-ui.button>
@@ -17,7 +17,7 @@
     </x-slot:header>
 
     {{-- Tabs --}}
-    <div class="flex items-center gap-1 mb-6 border-b border-[var(--border-default)]">
+    <div class="flex items-center gap-1 mb-6 border-b border-[var(--border-default)] overflow-x-auto hide-scrollbar whitespace-nowrap">
         @foreach(['All Contacts' => true, 'Lists' => false, 'Segments' => false, 'Prospect Finder' => false] as $tab => $active)
         <button class="px-4 py-2.5 text-sm font-medium transition-colors relative {{ $active ? 'text-primary-400' : 'text-[var(--text-tertiary)] hover:text-[var(--text-secondary)]' }}">
             {{ $tab }}
@@ -28,11 +28,11 @@
 
     {{-- Search and Filters --}}
     <div class="flex flex-col sm:flex-row items-start sm:items-center gap-3 mb-4">
-        <div class="relative flex-1 max-w-sm">
+        <div class="relative flex-1 w-full sm:max-w-sm">
             <svg class="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-[var(--text-tertiary)]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
             <input type="text" placeholder="Search contacts..." class="w-full h-9 pl-9 pr-3 text-sm bg-[var(--surface-secondary)] border border-[var(--border-default)] rounded-[var(--radius-lg)] text-[var(--text-primary)] placeholder-[var(--text-tertiary)] focus:border-[var(--border-focus)] focus:outline-none">
         </div>
-        <div class="flex gap-2">
+        <div class="flex flex-wrap gap-2 w-full sm:w-auto">
             <x-ui.button variant="secondary" size="sm">
                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.293A1 1 0 013 6.586V4z"/></svg>
                 Filters
@@ -43,8 +43,8 @@
     </div>
 
     {{-- Contacts Table --}}
-    <div class="card card-elevated overflow-hidden p-0">
-        <div class="overflow-x-auto">
+    <div class="card card-elevated overflow-hidden p-0 w-full min-w-0">
+        <div class="overflow-x-auto hide-scrollbar w-full">
             <table class="w-full text-sm">
                 <thead>
                     <tr class="bg-[var(--surface-secondary)]">
@@ -106,9 +106,9 @@
                 </tbody>
             </table>
         </div>
-        <div class="flex items-center justify-between px-5 py-3 border-t border-[var(--border-default)] bg-[var(--surface-secondary)]">
-            <span class="text-sm text-[var(--text-tertiary)]">Showing 1–6 of 12,450 contacts</span>
-            <div class="flex items-center gap-1">
+        <div class="flex flex-col sm:flex-row items-center justify-between px-5 py-3 border-t border-[var(--border-default)] bg-[var(--surface-secondary)] gap-3">
+            <span class="text-sm text-[var(--text-tertiary)] text-center sm:text-left">Showing 1–6 of 12,450 contacts</span>
+            <div class="flex items-center gap-1 flex-wrap justify-center">
                 <button class="px-3 py-1.5 text-sm rounded-[var(--radius-md)] bg-primary-600 text-white">1</button>
                 <button class="px-3 py-1.5 text-sm rounded-[var(--radius-md)] text-[var(--text-secondary)] hover:bg-[var(--surface-tertiary)]">2</button>
                 <button class="px-3 py-1.5 text-sm rounded-[var(--radius-md)] text-[var(--text-secondary)] hover:bg-[var(--surface-tertiary)]">3</button>

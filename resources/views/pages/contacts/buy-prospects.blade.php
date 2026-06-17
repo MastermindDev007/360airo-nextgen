@@ -4,8 +4,8 @@
             <h1 class="text-3xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-[var(--text-primary)] to-[var(--text-secondary)] tracking-tight">Buy Prospects</h1>
             <p class="text-sm text-[var(--text-tertiary)] mt-1 font-medium">Power your outreach with verified, high-intent B2B contact data</p>
         </div>
-        <div class="flex items-center gap-3">
-            <div class="px-4 py-2 rounded-xl bg-primary-500/10 border border-primary-500/20 text-primary-400 font-semibold text-sm flex items-center gap-2">
+        <div class="flex flex-wrap items-center gap-3 mt-4 sm:mt-0 w-full sm:w-auto">
+            <div class="px-4 py-2 rounded-xl bg-primary-500/10 border border-primary-500/20 text-primary-400 font-semibold text-sm flex items-center justify-center gap-2 w-full sm:w-auto">
                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
                 Current Balance: 250 Credits
             </div>

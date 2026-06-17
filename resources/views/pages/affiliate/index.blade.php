@@ -30,9 +30,9 @@
     {{-- Link Copy --}}
     <div class="card p-6 mb-8 max-w-3xl">
         <h2 class="text-base font-bold text-[var(--text-primary)] mb-4">Your Referral Link</h2>
-        <div class="flex gap-2">
+        <div class="flex flex-col sm:flex-row gap-2">
             <input type="text" readonly value="https://360airo.com/?ref=johndoe" class="flex-1 h-10 px-4 bg-[var(--surface-secondary)] border border-[var(--border-default)] rounded-[var(--radius-lg)] text-[var(--text-primary)] font-mono text-sm outline-none">
-            <x-ui.button variant="primary">
+            <x-ui.button variant="primary" class="w-full sm:w-auto justify-center">
                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/></svg>
                 Copy Link
             </x-ui.button>

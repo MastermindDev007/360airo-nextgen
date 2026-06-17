@@ -4,22 +4,22 @@
             <h1 class="text-3xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-[var(--text-primary)] to-[var(--text-secondary)] tracking-tight">Template Library</h1>
             <p class="text-sm text-[var(--text-tertiary)] mt-1 font-medium">Discover and manage high-converting outreach sequences</p>
         </div>
-        <div class="flex items-center gap-3">
-            <div class="bg-[var(--surface-secondary)]/50 backdrop-blur-md p-1 rounded-xl flex mr-2 border border-[var(--border-default)]">
-                <button class="px-4 py-1.5 rounded-lg bg-primary-500 text-white text-sm font-semibold shadow-sm transition-all">All Email Templates</button>
-                <button class="px-4 py-1.5 rounded-lg text-[var(--text-tertiary)] hover:text-[var(--text-primary)] text-sm font-semibold transition-all">My Saved Templates</button>
+        <div class="flex flex-wrap items-center gap-3 mt-4 sm:mt-0 w-full lg:w-auto">
+            <div class="bg-[var(--surface-secondary)]/50 backdrop-blur-md p-1 rounded-xl flex flex-wrap mr-0 sm:mr-2 border border-[var(--border-default)] w-full sm:w-auto">
+                <button class="flex-1 sm:flex-none px-4 py-1.5 rounded-lg bg-primary-500 text-white text-sm font-semibold shadow-sm transition-all whitespace-nowrap">All Templates</button>
+                <button class="flex-1 sm:flex-none px-4 py-1.5 rounded-lg text-[var(--text-tertiary)] hover:text-[var(--text-primary)] text-sm font-semibold transition-all whitespace-nowrap">My Saved Templates</button>
             </div>
             
-            <x-ui.button class="bg-gradient-to-r from-primary-600 to-primary-500 hover:from-primary-500 hover:to-primary-400 text-white shadow-lg shadow-primary-500/25 border-none">
+            <x-ui.button class="flex-1 sm:flex-none justify-center bg-gradient-to-r from-primary-600 to-primary-500 hover:from-primary-500 hover:to-primary-400 text-white shadow-lg shadow-primary-500/25 border-none">
                 <svg class="w-4 h-4 mr-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/></svg>
                 Create Template
             </x-ui.button>
         </div>
     </x-slot:header>
 
-    <div class="flex gap-8">
+    <div class="flex flex-col lg:flex-row gap-8 min-w-0">
         {{-- Left Sidebar: Categories --}}
-        <div class="w-64 flex-shrink-0 hidden lg:block">
+        <div class="w-full lg:w-64 flex-shrink-0 lg:block hidden">
             <div class="sticky top-6">
                 <div class="relative mb-6">
                     <svg class="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-[var(--text-tertiary)]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
@@ -63,8 +63,8 @@
         </div>
 
         {{-- Main Grid: Template Cards --}}
-        <div class="flex-1">
-            <div class="flex justify-between items-center mb-6">
+        <div class="flex-1 min-w-0">
+            <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 mb-6">
                 <p class="text-sm text-[var(--text-tertiary)]"><strong class="text-[var(--text-primary)]">24 templates</strong> found in All Templates</p>
                 <div class="flex items-center gap-2">
                     <span class="text-xs text-[var(--text-tertiary)]">Sort by:</span>

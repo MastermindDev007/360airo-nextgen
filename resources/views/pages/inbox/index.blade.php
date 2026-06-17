@@ -1,4 +1,4 @@
-<div class="h-[calc(100vh-100px)] flex flex-col -m-6">
+<div class="min-h-[calc(100vh-100px)] lg:h-[calc(100vh-100px)] flex flex-col -m-6">
     {{-- Unified Top Bar for Inbox --}}
     <div class="h-14 border-b border-[var(--border-default)] bg-[var(--surface-primary)] flex items-center justify-between px-6 flex-shrink-0">
         <div>
@@ -13,10 +13,10 @@
     </div>
 
     {{-- Strict 3-Pane Layout --}}
-    <div class="flex flex-1 overflow-hidden bg-[var(--surface-bg)]">
+    <div class="flex flex-col lg:flex-row flex-1 overflow-y-auto lg:overflow-hidden bg-[var(--surface-bg)]">
         
         {{-- Pane 1: Thread List (25%) --}}
-        <div class="w-80 border-r border-[var(--border-default)] bg-[var(--surface-primary)] flex flex-col flex-shrink-0">
+        <div class="w-full lg:w-80 border-b lg:border-b-0 lg:border-r border-[var(--border-default)] bg-[var(--surface-primary)] flex flex-col flex-shrink-0 h-[350px] lg:h-auto overflow-y-auto lg:overflow-hidden">
             <div class="p-3 border-b border-[var(--border-subtle)]">
                 <input type="text" placeholder="Search conversations..." class="w-full h-9 px-3 text-sm bg-[var(--surface-secondary)] border border-[var(--border-default)] rounded-[var(--radius-md)] text-[var(--text-primary)] placeholder-[var(--text-tertiary)] focus:border-blue-500 focus:outline-none">
             </div>
@@ -80,7 +80,7 @@
         </div>
 
         {{-- Pane 2: Conversation Thread (50%) --}}
-        <div class="flex-1 flex flex-col min-w-0 bg-[var(--surface-primary)]">
+        <div class="flex-1 flex flex-col min-w-0 bg-[var(--surface-primary)] min-h-[500px] lg:min-h-0">
             <div class="p-4 border-b border-[var(--border-default)] flex items-center justify-between flex-shrink-0">
                 <div>
                     <h2 class="text-base font-bold text-[var(--text-primary)]">Re: Next Steps for Q3</h2>

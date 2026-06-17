@@ -1,54 +1,60 @@
 <div class="h-[calc(100vh-100px)] flex flex-col -m-6">
     {{-- Wizard Top Bar --}}
-    <div class="h-16 border-b border-[var(--border-default)] bg-[var(--surface-primary)] flex items-center justify-between px-6 flex-shrink-0">
+    <div class="h-auto sm:h-16 py-4 sm:py-0 border-b border-[var(--border-default)] bg-[var(--surface-primary)] flex flex-col sm:flex-row items-start sm:items-center justify-between px-6 flex-shrink-0 gap-4 sm:gap-0">
         <div>
             <div class="text-[10px] font-bold text-[var(--text-tertiary)] uppercase tracking-wider mb-0.5">Campaign Builder</div>
             <h1 class="text-base font-bold text-[var(--text-primary)]">Q3 Enterprise Outbound</h1>
         </div>
-        <div class="flex items-center gap-3">
-            <span class="text-xs text-[var(--text-tertiary)] mr-2">Draft saved 2 mins ago</span>
-            <x-ui.button variant="ghost" size="sm" href="/campaigns">Exit</x-ui.button>
-            <x-ui.button variant="secondary" size="sm">Save Draft</x-ui.button>
-            <x-ui.button variant="primary" size="sm">Review & Launch</x-ui.button>
+        <div class="flex items-center gap-3 w-full sm:w-auto overflow-x-auto hide-scrollbar pb-1 sm:pb-0">
+            <span class="text-xs text-[var(--text-tertiary)] mr-2 whitespace-nowrap">Draft saved 2 mins ago</span>
+            <x-ui.button variant="ghost" size="sm" href="/campaigns" class="whitespace-nowrap">Exit</x-ui.button>
+            <x-ui.button variant="secondary" size="sm" class="whitespace-nowrap">Save Draft</x-ui.button>
+            <x-ui.button variant="primary" size="sm" class="whitespace-nowrap">Review & Launch</x-ui.button>
         </div>
     </div>
 
     {{-- Main Wizard Layout --}}
-    <div class="flex flex-1 overflow-hidden bg-[var(--surface-bg)]">
+    <div class="flex flex-col lg:flex-row flex-1 overflow-hidden bg-[var(--surface-bg)]">
         
         {{-- Left Sidebar: Sticky Navigation (20%) --}}
-        <div class="w-64 border-r border-[var(--border-default)] bg-[var(--surface-primary)] flex-shrink-0 overflow-y-auto">
-            <nav class="p-4 space-y-1">
-                <h3 class="text-[10px] font-bold text-[var(--text-tertiary)] uppercase tracking-wider mb-3 px-2">Setup</h3>
+        <div class="w-full lg:w-64 border-b lg:border-b-0 lg:border-r border-[var(--border-default)] bg-[var(--surface-primary)] flex-shrink-0 overflow-x-auto lg:overflow-y-auto">
+            <nav class="p-4 flex lg:flex-col gap-4 lg:gap-0 lg:space-y-1">
+                <div class="hidden lg:block">
+                    <h3 class="text-[10px] font-bold text-[var(--text-tertiary)] uppercase tracking-wider mb-3 px-2">Setup</h3>
+                </div>
                 
-                <a href="#" class="flex items-center gap-3 px-3 py-2 text-sm font-medium rounded-[var(--radius-md)] text-[var(--text-secondary)] hover:bg-[var(--surface-secondary)] transition-colors">
+                <a href="#" class="flex-shrink-0 flex items-center gap-3 px-3 py-2 text-sm font-medium rounded-[var(--radius-md)] text-[var(--text-secondary)] hover:bg-[var(--surface-secondary)] transition-colors">
                     <span class="w-5 h-5 rounded-full border border-[var(--border-strong)] flex items-center justify-center text-[10px]">1</span>
-                    Settings
+                    <span class="whitespace-nowrap">Settings</span>
                 </a>
                 
-                <h3 class="text-[10px] font-bold text-[var(--text-tertiary)] uppercase tracking-wider mt-6 mb-3 px-2">Content</h3>
+                <div class="hidden lg:block">
+                    <h3 class="text-[10px] font-bold text-[var(--text-tertiary)] uppercase tracking-wider mt-6 mb-3 px-2">Content</h3>
+                </div>
                 
-                <a href="#" class="flex items-center gap-3 px-3 py-2 text-sm font-medium rounded-[var(--radius-md)] bg-blue-50 dark:bg-blue-900/10 text-blue-600 dark:text-blue-400 transition-colors">
+                <a href="#" class="flex-shrink-0 flex items-center gap-3 px-3 py-2 text-sm font-medium rounded-[var(--radius-md)] bg-blue-50 dark:bg-blue-900/10 text-blue-600 dark:text-blue-400 transition-colors">
                     <span class="w-5 h-5 rounded-full bg-blue-600 text-white flex items-center justify-center text-[10px]">2</span>
-                    Sequences
+                    <span class="whitespace-nowrap">Sequences</span>
                 </a>
                 
-                <a href="#" class="flex items-center gap-3 px-3 py-2 text-sm font-medium rounded-[var(--radius-md)] text-[var(--text-secondary)] hover:bg-[var(--surface-secondary)] transition-colors">
+                <a href="#" class="flex-shrink-0 flex items-center gap-3 px-3 py-2 text-sm font-medium rounded-[var(--radius-md)] text-[var(--text-secondary)] hover:bg-[var(--surface-secondary)] transition-colors">
                     <span class="w-5 h-5 rounded-full border border-[var(--border-strong)] flex items-center justify-center text-[10px]">3</span>
-                    A/B Testing
+                    <span class="whitespace-nowrap">A/B Testing</span>
                 </a>
 
-                <h3 class="text-[10px] font-bold text-[var(--text-tertiary)] uppercase tracking-wider mt-6 mb-3 px-2">Audience</h3>
+                <div class="hidden lg:block">
+                    <h3 class="text-[10px] font-bold text-[var(--text-tertiary)] uppercase tracking-wider mt-6 mb-3 px-2">Audience</h3>
+                </div>
                 
-                <a href="#" class="flex items-center gap-3 px-3 py-2 text-sm font-medium rounded-[var(--radius-md)] text-[var(--text-secondary)] hover:bg-[var(--surface-secondary)] transition-colors">
+                <a href="#" class="flex-shrink-0 flex items-center gap-3 px-3 py-2 text-sm font-medium rounded-[var(--radius-md)] text-[var(--text-secondary)] hover:bg-[var(--surface-secondary)] transition-colors">
                     <span class="w-5 h-5 rounded-full border border-[var(--border-strong)] flex items-center justify-center text-[10px]">4</span>
-                    Leads
+                    <span class="whitespace-nowrap">Leads</span>
                 </a>
             </nav>
         </div>
 
         {{-- Right Canvas: Active Form (80%) --}}
-        <div class="flex-1 overflow-y-auto p-8 relative">
+        <div class="flex-1 overflow-y-auto p-4 md:p-8 relative">
             <div class="max-w-3xl mx-auto">
                 <div class="mb-8">
                     <h2 class="text-xl font-bold text-[var(--text-primary)]">Build Sequence</h2>
@@ -134,9 +140,9 @@
                 </div>
 
                 {{-- Action Footer inside Canvas --}}
-                <div class="mt-10 pt-6 border-t border-[var(--border-default)] flex justify-between">
-                    <x-ui.button variant="secondary">Back: Settings</x-ui.button>
-                    <x-ui.button variant="primary">Next: Audience</x-ui.button>
+                <div class="mt-10 pt-6 border-t border-[var(--border-default)] flex flex-col sm:flex-row justify-between gap-4 sm:gap-0">
+                    <x-ui.button variant="secondary" class="w-full sm:w-auto">Back: Settings</x-ui.button>
+                    <x-ui.button variant="primary" class="w-full sm:w-auto">Next: Audience</x-ui.button>
                 </div>
 
             </div>

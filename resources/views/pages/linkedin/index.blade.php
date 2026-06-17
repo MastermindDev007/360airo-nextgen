@@ -9,9 +9,9 @@
                 <p class="text-sm text-[var(--text-tertiary)] mt-1">Automate LinkedIn connection requests and messages</p>
             </div>
         </div>
-        <div class="flex gap-2">
-            <x-ui.button variant="secondary">Manage Accounts</x-ui.button>
-            <x-ui.button variant="primary" class="bg-[#0A66C2] hover:bg-[#004182]">New Campaign</x-ui.button>
+        <div class="flex flex-wrap gap-2 mt-4 sm:mt-0 w-full sm:w-auto">
+            <x-ui.button variant="secondary" class="flex-1 sm:flex-none justify-center">Manage Accounts</x-ui.button>
+            <x-ui.button variant="primary" class="flex-1 sm:flex-none justify-center bg-[#0A66C2] hover:bg-[#004182]">New Campaign</x-ui.button>
         </div>
     </x-slot:header>
 
@@ -30,8 +30,8 @@
 
     {{-- Active Campaigns --}}
     <h2 class="text-lg font-semibold text-[var(--text-primary)] mb-4">Active Campaigns</h2>
-    <div class="card card-elevated overflow-hidden p-0">
-        <div class="overflow-x-auto">
+    <div class="card card-elevated overflow-hidden p-0 w-full min-w-0">
+        <div class="overflow-x-auto hide-scrollbar w-full">
             <table class="w-full text-sm">
                 <thead>
                     <tr class="bg-[var(--surface-secondary)]">

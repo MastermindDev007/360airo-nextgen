@@ -4,16 +4,16 @@
             <h1 class="text-3xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-[var(--text-primary)] to-[var(--text-secondary)] tracking-tight">Email Accounts</h1>
             <p class="text-sm text-[var(--text-tertiary)] mt-1 font-medium">Configure and orchestrate your sending accounts and domains</p>
         </div>
-        <div class="flex items-center gap-3">
-            <x-ui.button variant="secondary" class="bg-[var(--surface-secondary)]/50 backdrop-blur-md border-[var(--border-subtle)] hover:bg-[var(--surface-tertiary)]">
+        <div class="flex flex-wrap items-center gap-3 mt-4 sm:mt-0 w-full lg:w-auto">
+            <x-ui.button variant="secondary" class="bg-[var(--surface-secondary)]/50 backdrop-blur-md border-[var(--border-subtle)] hover:bg-[var(--surface-tertiary)] flex-1 sm:flex-none justify-center">
                 <svg class="w-4 h-4 mr-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/></svg>
                 Refresh
             </x-ui.button>
-            <x-ui.button class="bg-gradient-to-r from-warning-500 to-warning-600 hover:from-warning-400 hover:to-warning-500 text-white shadow-lg shadow-warning-500/25 border-none">
+            <x-ui.button class="bg-gradient-to-r from-warning-500 to-warning-600 hover:from-warning-400 hover:to-warning-500 text-white shadow-lg shadow-warning-500/25 border-none flex-1 sm:flex-none justify-center">
                 <svg class="w-4 h-4 mr-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"/></svg>
                 Get Professional Email
             </x-ui.button>
-            <x-ui.button class="bg-gradient-to-r from-primary-600 to-primary-500 hover:from-primary-500 hover:to-primary-400 text-white shadow-lg shadow-primary-500/25 border-none">
+            <x-ui.button class="bg-gradient-to-r from-primary-600 to-primary-500 hover:from-primary-500 hover:to-primary-400 text-white shadow-lg shadow-primary-500/25 border-none flex-1 sm:flex-none justify-center">
                 <svg class="w-4 h-4 mr-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/></svg>
                 Add Email Account
             </x-ui.button>
@@ -107,8 +107,8 @@
         @if(count($accounts) === 0)
         <div class="px-6 py-24 flex flex-col items-center justify-center text-center relative overflow-hidden">
             {{-- Decorative Background Elements for Empty State --}}
-            <div class="absolute inset-0 flex items-center justify-center pointer-events-none opacity-20">
-                <div class="w-96 h-96 bg-primary-500/30 rounded-full blur-[100px]"></div>
+            <div class="absolute inset-0 flex items-center justify-center pointer-events-none opacity-20 overflow-hidden">
+                <div class="w-64 h-64 md:w-96 md:h-96 bg-primary-500/30 rounded-full blur-[80px] md:blur-[100px]"></div>
             </div>
             
             <div class="w-20 h-20 bg-gradient-to-b from-[var(--surface-tertiary)] to-transparent rounded-full flex items-center justify-center mb-6 shadow-inner border border-[var(--border-strong)] relative">

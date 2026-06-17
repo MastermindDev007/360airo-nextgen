@@ -73,12 +73,14 @@
     </script>
 </head>
 <body class="font-sans antialiased overflow-hidden" 
-      x-data="{ sidebarStyle: 'expanded', isHovered: false }" 
+      x-data="{ sidebarStyle: 'expanded', isHovered: false, mobileSidebarOpen: false, isMobile: window.innerWidth < 1024 }" 
+      @resize.window="isMobile = window.innerWidth < 1024"
       @theme-settings-updated.window="sidebarStyle = $event.detail.sidebar_style">
     {{-- Skip to content --}}
     <a href="#main-content" class="skip-link">Skip to content</a>
 
     {{-- Global 3D Preloader --}}
+    <script>if(sessionStorage.getItem('preloaderShown') === 'true') document.write('<style>#global-preloader { display: none !important; }</style>');</script>
     <div id="global-preloader" class="fixed inset-0 z-[99999] flex flex-col items-center justify-center bg-[var(--surface-bg)] transition-opacity duration-700">
         <canvas id="preloader-3d-canvas" class="absolute inset-0 pointer-events-none"></canvas>
         
@@ -109,7 +111,11 @@
 
     <div class="flex h-screen relative z-10">
         {{-- Mobile overlay --}}
-        <div id="mobile-overlay" class="fixed inset-0 bg-black/60 z-30 hidden lg:hidden"></div>
+        <div id="mobile-overlay" 
+             x-show="mobileSidebarOpen" 
+             x-transition.opacity 
+             @click="mobileSidebarOpen = false"
+             class="fixed inset-0 bg-black/60 z-30 lg:hidden" style="display: none;"></div>
 
         {{-- Sidebar --}}
         @include('components.layout.sidebar')
@@ -173,7 +179,7 @@
             pointer-events: none;
             z-index: 9999;
             border-radius: 50%;
-            transform: translate(-50%, -50%);
+            /* transform managed entirely by GSAP */
         }
 
         .custom-cursor-dot {
@@ -194,8 +200,8 @@
             width: 48px;
             height: 48px;
             border-color: var(--text-primary);
-            background-color: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(2px);
+            background-color: transparent; /* Removed background fill to keep it clean */
+            /* Removed backdrop-filter: blur(2px) as requested */
         }
         .cursor-hover .custom-cursor-dot {
             display: none;
@@ -266,6 +272,12 @@
     <script>
         // --- Global 3D Preloader Engine ---
         const initGlobalPreloader = () => {
+            if (sessionStorage.getItem('preloaderShown') === 'true') {
+                const p = document.getElementById('global-preloader');
+                if (p) p.style.display = 'none';
+                return;
+            }
+
             const preloader = document.getElementById('global-preloader');
             const canvas = document.getElementById('preloader-3d-canvas');
             const percentText = document.getElementById('preloader-percentage');
@@ -388,6 +400,7 @@
                                 cancelAnimationFrame(reqId);
                                 renderer.dispose();
                                 window.removeEventListener('resize', onResize);
+                                sessionStorage.setItem('preloaderShown', 'true');
                                 document.dispatchEvent(new CustomEvent('preloader-finished'));
                             }
                         });
@@ -482,6 +495,14 @@
                     el.style.setProperty('--mouse-x', `${x}px`);
                     el.style.setProperty('--mouse-y', `${y}px`);
                 });
+            });
+
+            // Click feedback
+            document.addEventListener('mousedown', () => {
+                if (!isMobile) gsap.to(cursorRing, { scale: 0.7, duration: 0.1 });
+            });
+            document.addEventListener('mouseup', () => {
+                if (!isMobile) gsap.to(cursorRing, { scale: 1, duration: 0.2, ease: "back.out(2)" });
             });
 
             // 2. GSAP Orchestration (Entry Animations)

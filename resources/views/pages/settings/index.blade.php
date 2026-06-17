@@ -4,10 +4,10 @@
             <h1 class="text-2xl font-bold text-[var(--text-primary)] tracking-tight">Settings</h1>
             <p class="text-sm text-[var(--text-tertiary)] mt-1">Manage your workspace preferences and team</p>
         </div>
-        <x-ui.button variant="primary">Save Changes</x-ui.button>
+        <x-ui.button variant="primary" class="mt-4 sm:mt-0">Save Changes</x-ui.button>
     </x-slot:header>
 
-    <div class="flex flex-col lg:flex-row gap-8">
+    <div class="flex flex-col lg:flex-row gap-8 min-w-0">
         {{-- Settings Nav --}}
         <div class="w-full lg:w-64 flex-shrink-0 space-y-1">
             <a href="#" class="block px-4 py-2.5 text-sm font-medium rounded-[var(--radius-md)] bg-primary-500/10 text-primary-400">General</a>
@@ -18,7 +18,7 @@
         </div>
 
         {{-- Settings Content --}}
-        <div class="flex-1 space-y-6">
+        <div class="flex-1 space-y-6 min-w-0">
             {{-- Workspace Info --}}
             <div class="card p-6">
                 <h2 class="text-lg font-bold text-[var(--text-primary)] mb-4">Workspace Information</h2>

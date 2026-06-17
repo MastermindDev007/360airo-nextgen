@@ -4,9 +4,9 @@
             <h1 class="text-2xl font-bold text-[var(--text-primary)] tracking-tight">Email Warmup</h1>
             <p class="text-sm text-[var(--text-tertiary)] mt-1">Build and protect your sender reputation automatically</p>
         </div>
-        <div class="flex gap-2">
-            <x-ui.button variant="secondary">Global Settings</x-ui.button>
-            <x-ui.button variant="primary">Add to Warmup</x-ui.button>
+        <div class="flex flex-wrap gap-2 mt-4 sm:mt-0">
+            <x-ui.button variant="secondary" class="flex-1 sm:flex-none justify-center">Global Settings</x-ui.button>
+            <x-ui.button variant="primary" class="flex-1 sm:flex-none justify-center">Add to Warmup</x-ui.button>
         </div>
     </x-slot:header>
 
@@ -23,16 +23,16 @@
                     <p class="text-sm text-[var(--text-tertiary)]">12,450 active seed accounts interacting globally</p>
                 </div>
             </div>
-            <div class="flex gap-8">
-                <div class="text-center">
+            <div class="flex flex-wrap justify-between sm:justify-start gap-4 sm:gap-8 w-full lg:w-auto mt-4 lg:mt-0">
+                <div class="text-center flex-1 sm:flex-none">
                     <div class="text-2xl font-bold text-[var(--text-primary)]">8</div>
                     <div class="text-xs text-[var(--text-tertiary)] uppercase tracking-wider mt-1">Warming</div>
                 </div>
-                <div class="text-center">
+                <div class="text-center flex-1 sm:flex-none">
                     <div class="text-2xl font-bold text-success-400">98.5%</div>
                     <div class="text-xs text-[var(--text-tertiary)] uppercase tracking-wider mt-1">Inbox Rate</div>
                 </div>
-                <div class="text-center">
+                <div class="text-center flex-1 sm:flex-none">
                     <div class="text-2xl font-bold text-[var(--text-primary)]">1.2k</div>
                     <div class="text-xs text-[var(--text-tertiary)] uppercase tracking-wider mt-1">Interactions Today</div>
                 </div>
@@ -53,8 +53,8 @@
 
         @foreach($accounts as $acc)
         <div class="card card-elevated">
-            <div class="flex justify-between items-start mb-4">
-                <div class="flex items-center gap-3">
+            <div class="flex flex-col sm:flex-row sm:justify-between items-start mb-4 gap-3">
+                <div class="flex items-center gap-3 w-full sm:w-auto">
                     <div class="w-10 h-10 rounded-full bg-gradient-to-br from-primary-400 to-primary-600 flex items-center justify-center text-white font-bold">{{ substr($acc['email'], 0, 1) }}</div>
                     <div>
                         <h3 class="font-semibold text-[var(--text-primary)]">{{ $acc['email'] }}</h3>

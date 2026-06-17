@@ -1,10 +1,13 @@
 {{-- NextGen Reimagined Sidebar --}}
-<aside class="flex-shrink-0 flex flex-col bg-[var(--surface-bg)] border-r border-[var(--border-subtle)] hidden lg:flex fixed lg:relative h-screen z-40 transition-all duration-300 ease-[var(--ease-spring)]" 
-       :class="[
-           (sidebarStyle === 'expanded' || isHovered) ? 'w-[260px]' : 'w-[72px]',
-           (sidebarStyle === 'collapsed' && isHovered) ? 'absolute left-0 top-0 h-full shadow-2xl z-50' : 'relative z-40'
-       ]"
-       @mouseenter="if(sidebarStyle === 'collapsed') isHovered = true"
+<aside class="sidebar flex-shrink-0 flex flex-col bg-[var(--surface-bg)] border-r border-[var(--border-subtle)] fixed h-screen z-50 transition-all duration-300 ease-[var(--ease-spring)] w-[260px] -translate-x-full lg:translate-x-0" 
+       :class="{
+           'translate-x-0': mobileSidebarOpen,
+           'lg:w-[260px]': sidebarStyle === 'expanded' || isHovered,
+           'lg:w-[72px]': sidebarStyle === 'collapsed' && !isHovered,
+           'lg:absolute lg:left-0 lg:top-0 lg:h-full lg:shadow-2xl lg:z-50': sidebarStyle === 'collapsed' && isHovered,
+           'lg:relative lg:z-40': !(sidebarStyle === 'collapsed' && isHovered)
+       }"
+       @mouseenter="if(sidebarStyle === 'collapsed' && !isMobile) isHovered = true"
        @mouseleave="isHovered = false"
        id="app-sidebar">
     
